@@ -7,9 +7,9 @@ use Monolog\Formatter\LogstashFormatter;
 
 
 class Logstash extends MonologAdapter {
-  public function __construct($appId, $serverId, $path, $level = Logger::INFO) {
+  public function __construct($channel, $appId, $serverId, $path, $level = Logger::INFO) {
     // construct the monolog
-    $monolog = new Logger();
+    $monolog = new Logger($channel);
     $handler = new StreamHandler($path, $level);
     $formatter = new LogstashFormatter($appId, $serverId);
 

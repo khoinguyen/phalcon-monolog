@@ -42,7 +42,11 @@ class MonologAdapter extends \Phalcon\Logger\Adapter {
 
   }
 
-  public function log($type, $message, array $context = NULL) {
+  public function log($type, $message = null, array $context = array()) {
+    if ($message == null) {
+      $message = $type;
+      $type = PLogger::INFO;
+    }
     $this->monolog->addRecord($this->levelMapping[$type], $message, $context);
   }
   public function logInternal($message, $type, $time, $context) {
@@ -58,26 +62,26 @@ class MonologAdapter extends \Phalcon\Logger\Adapter {
 
   public function close() {}
 
-  public function debug($message, array $context = NULL) {
+  public function debug($message, array $context = array()) {
     $this->monolog->addDebug($message, $context);
 
   }
-  public function error($message, array $context = null) {
+  public function error($message, array $context  = array()) {
     $this->monolog->addError($message, $context);
   }
-  public function info($message, array $context = null) {
+  public function info($message, array $context = array()) {
     $this->monolog->addInfo($message, $context);
   }
-  public function notice($message, array $context = null) {
+  public function notice($message, array $context = array()) {
     $this->monolog->addNotice($message, $context);
   }
-  public function warning($message, array $context = null) {
+  public function warning($message, array $context = array()) {
     $this->monolog->addWarning($message, $context);
   }
-  public function alert($message, array $context = null) {
+  public function alert($message, array $context = array()) {
     $this->monolog->addAlert($message, $context);
   }
-  public function emergency($message, array $context = null) {
+  public function emergency($message, array $context = array()) {
     $this->monolog->addEmergency($message, $context);
   }
 }
