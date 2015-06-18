@@ -1,12 +1,12 @@
 <?php
 
-namespace Systagi\Phalcon\Loggin\Adapter\Monolog;
+namespace Systagi\Phalcon\Logger\Adapter\Monolog;
 
-use Monolog\Logger as MLogger;
-use Monolog\Handler\StreamHandler;
-use Phalcon\Logger as PLogger;
+use \Monolog\Logger as MLogger;
+use \Monolog\Handler\StreamHandler;
+use \Phalcon\Logger as PLogger;
 
-class MonologAdapter extends Phalcon\Logger\Adapter {
+class MonologAdapter extends \Phalcon\Logger\Adapter {
 
   protected $monolog;
 
@@ -42,10 +42,12 @@ class MonologAdapter extends Phalcon\Logger\Adapter {
 
   }
 
-  public function log($type, $message = "", $context = null) {
+  public function log($type, $message, array $context = NULL) {
     $this->monolog->addRecord($this->levelMapping[$type], $message, $context);
   }
-
+  public function logInternal($message, $type, $time, $context) {
+    $this->monolog->addRecord($this->levelMapping[$type], $message, $context);
+  }
   public function begin() {
 
   }
@@ -56,26 +58,26 @@ class MonologAdapter extends Phalcon\Logger\Adapter {
 
   public function close() {}
 
-  public function debug($message, $context = null) {
+  public function debug($message, array $context = NULL) {
     $this->monolog->addDebug($message, $context);
 
   }
-  public function error($message, $context = null) {
+  public function error($message, array $context = null) {
     $this->monolog->addError($message, $context);
   }
-  public function info($message, $context = null) {
+  public function info($message, array $context = null) {
     $this->monolog->addInfo($message, $context);
   }
-  public function notice($message, $context = null) {
+  public function notice($message, array $context = null) {
     $this->monolog->addNotice($message, $context);
   }
-  public function warning($message, $context = null) {
+  public function warning($message, array $context = null) {
     $this->monolog->addWarning($message, $context);
   }
-  public function alert($message, $context = null) {
+  public function alert($message, array $context = null) {
     $this->monolog->addAlert($message, $context);
   }
-  public function emergency($message, $context = null) {
+  public function emergency($message, array $context = null) {
     $this->monolog->addEmergency($message, $context);
   }
 }
