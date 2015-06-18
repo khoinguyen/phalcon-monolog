@@ -1,0 +1,24 @@
+{
+    "name": "khoinguyen/phalcon-monolog",
+    "type": "library",
+    "description": "Phalcon adapter for MonoLog",
+    "keywords": ["log","logging", "phalcon", "adapter"],
+    "homepage": "https://github.com/khoinguyen/phalcon-monolog",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Khoi Nguyen",
+            "email": "khoi.nqq@gmail.com",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "monolog/monolog": "*",
+        "ext-phalcon" : ">=1.2.4"
+    },
+    "autoload": {
+        "psr-4": {
+            "Systagi\\Phalcon\\Logger\\Adapter\\Monolog": "src/"
+        }
+    }
+}
